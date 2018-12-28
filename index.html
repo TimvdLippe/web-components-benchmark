@@ -1,0 +1,1520 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Web Components Benchmark</title>
+        <meta
+            name="Description"
+            content="Two simple examples built with various Web Components technologies and benchmarked"
+        />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
+        />
+        <meta name="theme-color" content="#16161d" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+
+        <meta http-equiv="x-ua-compatible" content="IE=Edge" />
+
+        <link
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+            crossorigin="anonymous"
+        />
+    </head>
+
+    <body>
+        <div class="container">
+            <div class="py-5 text-center">
+                <h1>Web Components Benchmark</h1>
+                <br />
+                <p class="lead">
+                    Two simple examples built with various Web Components
+                    technologies and benchmarked
+                </p>
+                <br />
+                <p>
+                    Repo :
+                    <a
+                        href="https://github.com/vogloblinsky/web-components-benchmark"
+                        target="_blank"
+                        >github.com/vogloblinsky/web-components-benchmark</a
+                    >
+                </p>
+                <br />
+                <p>
+                    The demos do not use any Polyfill & are build to ES6/ES2015
+                    code for benchmarks purpose. <br />
+                    Please use Chrome, Safari or Firefox > v63
+                </p>
+                <p>
+                    The benchmark is running on Travis during a CI process,
+                    results are constant between two builds.
+                </p>
+                <p>
+                    The benchmark use the great Puppeteer Node.js library for
+                    manipulating a Chrome headless instance. Puppeteer has some
+                    APIs for generating a RAW trace file which can be opened in
+                    Chrome DevTools or
+                    <a
+                        href="https://chromedevtools.github.io/timeline-viewer/"
+                        target="_blank"
+                        >timeline viewer</a
+                    >.
+                </p>
+                <p>
+                    The data extracted from the RAW JSON is the "top down tree"
+                    total time in DevTools Performance tab of Chrome, which is
+                    an addition of scripting, rendering & painting time in the
+                    graph below.
+                </p>
+                <p><img src="devtools.png" /></p>
+                <p>Last build : 28/12/2018 - 21:52:21</p>
+                <br />
+
+                <p>
+                    <a href="#todo">Todo List</a> |
+                    <a href="#pascal">Pascal triangle</a>
+                </p>
+
+                <hr />
+            </div>
+            <div class="py-5 text-center clear-padding-top">
+                <a id="todo"></a>
+                <h2 class="text-primary">Todo List</h2>
+                <p>
+                    This benchmark consist of 4 scenarios : page load, create 50
+                    todos, delete 50 todos, editing 50 todos
+                </p>
+                <br />
+                <h4>Libraries or compilers</h4>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+    <th scope="col"></th>
+    <th scope="col">Assets size Gzipped<br>(in Ko)</th>
+    <th scope="col">Page load<br>(in ms)</th>
+    <th scope="col">Time to interactive<br>(in ms)</th>
+    <th scope="col">Create 50 todos<br>(in ms)</th>
+    <th scope="col">Delete 50 todos<br>(in ms)</th>
+    <th scope="col">Edit 50 todos<br>(in ms)</th>
+</tr>
+                    </thead>
+                    <tbody>
+                         <tr>
+    <th scope="row" class="element-infos">
+        Native<br />
+        <span class="light">
+            </span>
+        <div class="element-infos__stars">
+            &nbsp;<ion-icon name="star"></ion-icon>
+        </div>
+        <div>
+            <a href="./demos/todomvc/native" target="_blank">Demo</a>
+        </div>
+    </th>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-1" role="progressbar" style="width: 2%">
+                2.2
+            </div>
+        </div>
+    </td>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-2" role="progressbar" style="width: 19%">
+                25
+            </div>
+        </div>
+    </td>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-3" role="progressbar" style="width: 37%">
+                1278
+            </div>
+        </div>
+    </td>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-4" role="progressbar" style="width: 100%">
+                636
+            </div>
+        </div>
+    </td>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-5" role="progressbar" style="width: 100%">
+                451
+            </div>
+        </div>
+    </td>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-6" role="progressbar" style="width: 100%">
+                776
+            </div>
+        </div>
+    </td>
+</tr>  <tr>
+    <th scope="row" class="element-infos">
+        Atomico<br />
+        <span class="light">
+            0.5.4</span>
+        <div class="element-infos__stars">
+            160&nbsp;<ion-icon name="star"></ion-icon>
+        </div>
+        <div>
+            <a href="./demos/todomvc/atomico" target="_blank">Demo</a>
+        </div>
+    </th>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-1" role="progressbar" style="width: 4%">
+                3.8
+            </div>
+        </div>
+    </td>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-2" role="progressbar" style="width: 32%">
+                42
+            </div>
+        </div>
+    </td>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-3" role="progressbar" style="width: 38%">
+                1319
+            </div>
+        </div>
+    </td>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-4" role="progressbar" style="width: 62%">
+                395
+            </div>
+        </div>
+    </td>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-5" role="progressbar" style="width: 37%">
+                170
+            </div>
+        </div>
+    </td>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-6" role="progressbar" style="width: 41%">
+                323
+            </div>
+        </div>
+    </td>
+</tr>  <tr>
+    <th scope="row" class="element-infos">
+        Hybrids<br />
+        <span class="light">
+            1.5.0</span>
+        <div class="element-infos__stars">
+            840&nbsp;<ion-icon name="star"></ion-icon>
+        </div>
+        <div>
+            <a href="./demos/todomvc/hybrids" target="_blank">Demo</a>
+        </div>
+    </th>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-1" role="progressbar" style="width: 8%">
+                7.7
+            </div>
+        </div>
+    </td>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-2" role="progressbar" style="width: 34%">
+                44
+            </div>
+        </div>
+    </td>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-3" role="progressbar" style="width: 42%">
+                1446
+            </div>
+        </div>
+    </td>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-4" role="progressbar" style="width: 59%">
+                377
+            </div>
+        </div>
+    </td>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-5" role="progressbar" style="width: 14%">
+                64
+            </div>
+        </div>
+    </td>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-6" role="progressbar" style="width: 15%">
+                118
+            </div>
+        </div>
+    </td>
+</tr>  <tr>
+    <th scope="row" class="element-infos">
+        HyperHTMLElement<br />
+        <span class="light">
+            3.4.0</span>
+        <div class="element-infos__stars">
+            106&nbsp;<ion-icon name="star"></ion-icon>
+        </div>
+        <div>
+            <a href="./demos/todomvc/hyperHTMLElement" target="_blank">Demo</a>
+        </div>
+    </th>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-1" role="progressbar" style="width: 12%">
+                12.1
+            </div>
+        </div>
+    </td>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-2" role="progressbar" style="width: 17%">
+                23
+            </div>
+        </div>
+    </td>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-3" role="progressbar" style="width: 44%">
+                1498
+            </div>
+        </div>
+    </td>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-4" role="progressbar" style="width: 42%">
+                268
+            </div>
+        </div>
+    </td>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-5" role="progressbar" style="width: 39%">
+                177
+            </div>
+        </div>
+    </td>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-6" role="progressbar" style="width: 11%">
+                89
+            </div>
+        </div>
+    </td>
+</tr>  <tr>
+    <th scope="row" class="element-infos">
+        LitElement<br />
+        <span class="light">
+            0.6.5</span>
+        <div class="element-infos__stars">
+            897&nbsp;<ion-icon name="star"></ion-icon>
+        </div>
+        <div>
+            <a href="./demos/todomvc/lit-element" target="_blank">Demo</a>
+        </div>
+    </th>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-1" role="progressbar" style="width: 9%">
+                9.3
+            </div>
+        </div>
+    </td>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-2" role="progressbar" style="width: 25%">
+                33
+            </div>
+        </div>
+    </td>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-3" role="progressbar" style="width: 43%">
+                1464
+            </div>
+        </div>
+    </td>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-4" role="progressbar" style="width: 48%">
+                309
+            </div>
+        </div>
+    </td>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-5" role="progressbar" style="width: 45%">
+                207
+            </div>
+        </div>
+    </td>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-6" role="progressbar" style="width: 10%">
+                80
+            </div>
+        </div>
+    </td>
+</tr>  <tr>
+    <th scope="row" class="element-infos">
+        Omi<br />
+        <span class="light">
+            5.0.17</span>
+        <div class="element-infos__stars">
+            5304&nbsp;<ion-icon name="star"></ion-icon>
+        </div>
+        <div>
+            <a href="./demos/todomvc/omi" target="_blank">Demo</a>
+        </div>
+    </th>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-1" role="progressbar" style="width: 10%">
+                9.9
+            </div>
+        </div>
+    </td>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-2" role="progressbar" style="width: 17%">
+                23
+            </div>
+        </div>
+    </td>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-3" role="progressbar" style="width: 43%">
+                1462
+            </div>
+        </div>
+    </td>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-4" role="progressbar" style="width: 61%">
+                388
+            </div>
+        </div>
+    </td>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-5" role="progressbar" style="width: 58%">
+                262
+            </div>
+        </div>
+    </td>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-6" role="progressbar" style="width: 12%">
+                98
+            </div>
+        </div>
+    </td>
+</tr>  <tr>
+    <th scope="row" class="element-infos">
+        Polymer 3<br />
+        <span class="light">
+            3.1.0</span>
+        <div class="element-infos__stars">
+            20380&nbsp;<ion-icon name="star"></ion-icon>
+        </div>
+        <div>
+            <a href="./demos/todomvc/polymer-3" target="_blank">Demo</a>
+        </div>
+    </th>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-1" role="progressbar" style="width: 46%">
+                43.4
+            </div>
+        </div>
+    </td>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-2" role="progressbar" style="width: 29%">
+                38
+            </div>
+        </div>
+    </td>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-3" role="progressbar" style="width: 70%">
+                2379
+            </div>
+        </div>
+    </td>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-4" role="progressbar" style="width: 68%">
+                437
+            </div>
+        </div>
+    </td>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-5" role="progressbar" style="width: 29%">
+                131
+            </div>
+        </div>
+    </td>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-6" role="progressbar" style="width: 13%">
+                105
+            </div>
+        </div>
+    </td>
+</tr>  <tr>
+    <th scope="row" class="element-infos">
+        Riot<br />
+        <span class="light">
+            3.13.2</span>
+        <div class="element-infos__stars">
+            13320&nbsp;<ion-icon name="star"></ion-icon>
+        </div>
+        <div>
+            <a href="./demos/todomvc/riot" target="_blank">Demo</a>
+        </div>
+    </th>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-1" role="progressbar" style="width: 13%">
+                12.3
+            </div>
+        </div>
+    </td>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-2" role="progressbar" style="width: 38%">
+                50
+            </div>
+        </div>
+    </td>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-3" role="progressbar" style="width: 42%">
+                1453
+            </div>
+        </div>
+    </td>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-4" role="progressbar" style="width: 50%">
+                324
+            </div>
+        </div>
+    </td>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-5" role="progressbar" style="width: 90%">
+                409
+            </div>
+        </div>
+    </td>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-6" role="progressbar" style="width: 23%">
+                183
+            </div>
+        </div>
+    </td>
+</tr>  <tr>
+    <th scope="row" class="element-infos">
+        SkateJS &amp; lit-html<br />
+        <span class="light">
+            0.2.2</span>
+        <div class="element-infos__stars">
+            2796&nbsp;<ion-icon name="star"></ion-icon>
+        </div>
+        <div>
+            <a href="./demos/todomvc/skatejs-lit-html" target="_blank">Demo</a>
+        </div>
+    </th>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-1" role="progressbar" style="width: 7%">
+                7.3
+            </div>
+        </div>
+    </td>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-2" role="progressbar" style="width: 36%">
+                47
+            </div>
+        </div>
+    </td>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-3" role="progressbar" style="width: 41%">
+                1414
+            </div>
+        </div>
+    </td>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-4" role="progressbar" style="width: 49%">
+                313
+            </div>
+        </div>
+    </td>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-5" role="progressbar" style="width: 45%">
+                207
+            </div>
+        </div>
+    </td>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-6" role="progressbar" style="width: 19%">
+                150
+            </div>
+        </div>
+    </td>
+</tr>  <tr>
+    <th scope="row" class="element-infos">
+        SkateJS &amp; Preact<br />
+        <span class="light">
+            0.3.3</span>
+        <div class="element-infos__stars">
+            2796&nbsp;<ion-icon name="star"></ion-icon>
+        </div>
+        <div>
+            <a href="./demos/todomvc/skatejs-preact" target="_blank">Demo</a>
+        </div>
+    </th>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-1" role="progressbar" style="width: 9%">
+                8.5
+            </div>
+        </div>
+    </td>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-2" role="progressbar" style="width: 34%">
+                44
+            </div>
+        </div>
+    </td>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-3" role="progressbar" style="width: 41%">
+                1413
+            </div>
+        </div>
+    </td>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-4" role="progressbar" style="width: 49%">
+                315
+            </div>
+        </div>
+    </td>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-5" role="progressbar" style="width: 20%">
+                94
+            </div>
+        </div>
+    </td>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-6" role="progressbar" style="width: 16%">
+                127
+            </div>
+        </div>
+    </td>
+</tr>  <tr>
+    <th scope="row" class="element-infos">
+        Slim.js<br />
+        <span class="light">
+            4.0.5</span>
+        <div class="element-infos__stars">
+            548&nbsp;<ion-icon name="star"></ion-icon>
+        </div>
+        <div>
+            <a href="./demos/todomvc/slim.js" target="_blank">Demo</a>
+        </div>
+    </th>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-1" role="progressbar" style="width: 5%">
+                5.5
+            </div>
+        </div>
+    </td>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-2" role="progressbar" style="width: 19%">
+                25
+            </div>
+        </div>
+    </td>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-3" role="progressbar" style="width: 40%">
+                1357
+            </div>
+        </div>
+    </td>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-4" role="progressbar" style="width: 49%">
+                315
+            </div>
+        </div>
+    </td>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-5" role="progressbar" style="width: 40%">
+                183
+            </div>
+        </div>
+    </td>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-6" role="progressbar" style="width: 11%">
+                87
+            </div>
+        </div>
+    </td>
+</tr>  <tr>
+    <th scope="row" class="element-infos">
+        Stencil<br />
+        <span class="light">
+            0.16.1</span>
+        <div class="element-infos__stars">
+            4238&nbsp;<ion-icon name="star"></ion-icon>
+        </div>
+        <div>
+            <a href="./demos/todomvc/stencil" target="_blank">Demo</a>
+        </div>
+    </th>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-1" role="progressbar" style="width: 13%">
+                12.3
+            </div>
+        </div>
+    </td>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-2" role="progressbar" style="width: 21%">
+                28
+            </div>
+        </div>
+    </td>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-3" role="progressbar" style="width: 18%">
+                624
+            </div>
+        </div>
+    </td>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-4" role="progressbar" style="width: 42%">
+                272
+            </div>
+        </div>
+    </td>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-5" role="progressbar" style="width: 16%">
+                74
+            </div>
+        </div>
+    </td>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-6" role="progressbar" style="width: 16%">
+                125
+            </div>
+        </div>
+    </td>
+</tr>  <tr>
+    <th scope="row" class="element-infos">
+        Svelte<br />
+        <span class="light">
+            2.16.0</span>
+        <div class="element-infos__stars">
+            8306&nbsp;<ion-icon name="star"></ion-icon>
+        </div>
+        <div>
+            <a href="./demos/todomvc/svelte" target="_blank">Demo</a>
+        </div>
+    </th>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-1" role="progressbar" style="width: 3%">
+                3.7
+            </div>
+        </div>
+    </td>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-2" role="progressbar" style="width: 29%">
+                38
+            </div>
+        </div>
+    </td>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-3" role="progressbar" style="width: 38%">
+                1302
+            </div>
+        </div>
+    </td>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-4" role="progressbar" style="width: 35%">
+                224
+            </div>
+        </div>
+    </td>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-5" role="progressbar" style="width: 16%">
+                75
+            </div>
+        </div>
+    </td>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-6" role="progressbar" style="width: 13%">
+                107
+            </div>
+        </div>
+    </td>
+</tr> 
+                    </tbody>
+                </table>
+                <br />
+                <h4>Classic frameworks exporting to Web Components</h4>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+    <th scope="col"></th>
+    <th scope="col">Assets size Gzipped<br>(in Ko)</th>
+    <th scope="col">Page load<br>(in ms)</th>
+    <th scope="col">Time to interactive<br>(in ms)</th>
+    <th scope="col">Create 50 todos<br>(in ms)</th>
+    <th scope="col">Delete 50 todos<br>(in ms)</th>
+    <th scope="col">Edit 50 todos<br>(in ms)</th>
+</tr>
+                    </thead>
+                    <tbody>
+                         <tr>
+    <th scope="row" class="element-infos">
+        Angular Elements<br />
+        <span class="light">
+            7.1.4</span>
+        <div class="element-infos__stars">
+            42492&nbsp;<ion-icon name="star"></ion-icon>
+        </div>
+        <div>
+            <a href="./demos/todomvc/angular-elements" target="_blank">Demo</a>
+        </div>
+    </th>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-1" role="progressbar" style="width: 100%">
+                94.2
+            </div>
+        </div>
+    </td>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-2" role="progressbar" style="width: 100%">
+                129
+            </div>
+        </div>
+    </td>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-3" role="progressbar" style="width: 100%">
+                3392
+            </div>
+        </div>
+    </td>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-4" role="progressbar" style="width: 48%">
+                310
+            </div>
+        </div>
+    </td>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-5" role="progressbar" style="width: 46%">
+                209
+            </div>
+        </div>
+    </td>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-6" role="progressbar" style="width: 27%">
+                211
+            </div>
+        </div>
+    </td>
+</tr>  <tr>
+    <th scope="row" class="element-infos">
+        Vue.js<br />
+        <span class="light">
+            2.5.21</span>
+        <div class="element-infos__stars">
+            118622&nbsp;<ion-icon name="star"></ion-icon>
+        </div>
+        <div>
+            <a href="./demos/todomvc/vue.js" target="_blank">Demo</a>
+        </div>
+    </th>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-1" role="progressbar" style="width: 40%">
+                37.9
+            </div>
+        </div>
+    </td>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-2" role="progressbar" style="width: 50%">
+                65
+            </div>
+        </div>
+    </td>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-3" role="progressbar" style="width: 58%">
+                1982
+            </div>
+        </div>
+    </td>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-4" role="progressbar" style="width: 45%">
+                290
+            </div>
+        </div>
+    </td>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-5" role="progressbar" style="width: 6%">
+                28
+            </div>
+        </div>
+    </td>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-6" role="progressbar" style="width: 13%">
+                107
+            </div>
+        </div>
+    </td>
+</tr>  <tr>
+    <th scope="row" class="element-infos">
+        Dojo<br />
+        <span class="light">
+            2.0.0</span>
+        <div class="element-infos__stars">
+            80&nbsp;<ion-icon name="star"></ion-icon>
+        </div>
+        <div>
+            <a href="./demos/todomvc/dojo2" target="_blank">Demo</a>
+        </div>
+    </th>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-1" role="progressbar" style="width: 16%">
+                15.8
+            </div>
+        </div>
+    </td>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-2" role="progressbar" style="width: 41%">
+                53
+            </div>
+        </div>
+    </td>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-3" role="progressbar" style="width: 48%">
+                1633
+            </div>
+        </div>
+    </td>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-4" role="progressbar" style="width: 50%">
+                321
+            </div>
+        </div>
+    </td>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-5" role="progressbar" style="width: 35%">
+                159
+            </div>
+        </div>
+    </td>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-6" role="progressbar" style="width: 20%">
+                162
+            </div>
+        </div>
+    </td>
+</tr> 
+                    </tbody>
+                </table>
+            </div>
+            <div class="py-5 text-center">
+                <a id="pascal"></a>
+                <h2 class="text-primary">Pascal triangle</h2>
+                <p>This benchmark display a Pascal Triangle</p>
+                <br />
+                <h4>Libraries or compilers</h4>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+    <th scope="col"></th>
+    <th scope="col">Assets size Gzipped<br>(in Ko)</th>
+    <th scope="col">Page load<br>(in ms)</th>
+    <th scope="col">Time to interactive<br>(in ms)</th>
+</tr>
+                    </thead>
+                    <tbody>
+                         <tr>
+    <th scope="row" class="element-infos">
+        Native<br />
+        <span class="light">
+            </span>
+        <div class="element-infos__stars">
+            &nbsp;<ion-icon name="star"></ion-icon>
+        </div>
+        <div>
+            <a href="./demos/pascal-triangle/native" target="_blank">Demo</a>
+        </div>
+    </th>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-1" role="progressbar" style="width: 1%">
+                1
+            </div>
+        </div>
+    </td>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-2" role="progressbar" style="width: 12%">
+                270
+            </div>
+        </div>
+    </td>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-3" role="progressbar" style="width: 22%">
+                2310
+            </div>
+        </div>
+    </td>
+</tr>  <tr>
+    <th scope="row" class="element-infos">
+        Hybrids<br />
+        <span class="light">
+            1.5.0</span>
+        <div class="element-infos__stars">
+            840&nbsp;<ion-icon name="star"></ion-icon>
+        </div>
+        <div>
+            <a href="./demos/pascal-triangle/hybrids" target="_blank">Demo</a>
+        </div>
+    </th>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-1" role="progressbar" style="width: 8%">
+                6.5
+            </div>
+        </div>
+    </td>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-2" role="progressbar" style="width: 55%">
+                1238
+            </div>
+        </div>
+    </td>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-3" role="progressbar" style="width: 87%">
+                9018
+            </div>
+        </div>
+    </td>
+</tr>  <tr>
+    <th scope="row" class="element-infos">
+        HyperHTMLElement<br />
+        <span class="light">
+            3.4.0</span>
+        <div class="element-infos__stars">
+            106&nbsp;<ion-icon name="star"></ion-icon>
+        </div>
+        <div>
+            <a href="./demos/pascal-triangle/hyperHTMLElement" target="_blank">Demo</a>
+        </div>
+    </th>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-1" role="progressbar" style="width: 13%">
+                10.8
+            </div>
+        </div>
+    </td>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-2" role="progressbar" style="width: 16%">
+                366
+            </div>
+        </div>
+    </td>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-3" role="progressbar" style="width: 39%">
+                4106
+            </div>
+        </div>
+    </td>
+</tr>  <tr>
+    <th scope="row" class="element-infos">
+        LitElement<br />
+        <span class="light">
+            0.6.5</span>
+        <div class="element-infos__stars">
+            897&nbsp;<ion-icon name="star"></ion-icon>
+        </div>
+        <div>
+            <a href="./demos/pascal-triangle/lit-element" target="_blank">Demo</a>
+        </div>
+    </th>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-1" role="progressbar" style="width: 8%">
+                7
+            </div>
+        </div>
+    </td>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-2" role="progressbar" style="width: 29%">
+                658
+            </div>
+        </div>
+    </td>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-3" role="progressbar" style="width: 0%">
+                
+            </div>
+        </div>
+    </td>
+</tr>  <tr>
+    <th scope="row" class="element-infos">
+        Omi<br />
+        <span class="light">
+            5.0.17</span>
+        <div class="element-infos__stars">
+            5304&nbsp;<ion-icon name="star"></ion-icon>
+        </div>
+        <div>
+            <a href="./demos/pascal-triangle/omi" target="_blank">Demo</a>
+        </div>
+    </th>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-1" role="progressbar" style="width: 10%">
+                8.5
+            </div>
+        </div>
+    </td>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-2" role="progressbar" style="width: 7%">
+                158
+            </div>
+        </div>
+    </td>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-3" role="progressbar" style="width: 32%">
+                3377
+            </div>
+        </div>
+    </td>
+</tr>  <tr>
+    <th scope="row" class="element-infos">
+        Polymer 3<br />
+        <span class="light">
+            3.1.0</span>
+        <div class="element-infos__stars">
+            20380&nbsp;<ion-icon name="star"></ion-icon>
+        </div>
+        <div>
+            <a href="./demos/pascal-triangle/polymer-3" target="_blank">Demo</a>
+        </div>
+    </th>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-1" role="progressbar" style="width: 23%">
+                19
+            </div>
+        </div>
+    </td>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-2" role="progressbar" style="width: 27%">
+                620
+            </div>
+        </div>
+    </td>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-3" role="progressbar" style="width: 43%">
+                4452
+            </div>
+        </div>
+    </td>
+</tr>  <tr>
+    <th scope="row" class="element-infos">
+        Riot<br />
+        <span class="light">
+            3.13.2</span>
+        <div class="element-infos__stars">
+            13320&nbsp;<ion-icon name="star"></ion-icon>
+        </div>
+        <div>
+            <a href="./demos/pascal-triangle/riot" target="_blank">Demo</a>
+        </div>
+    </th>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-1" role="progressbar" style="width: 13%">
+                11.2
+            </div>
+        </div>
+    </td>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-2" role="progressbar" style="width: 67%">
+                1503
+            </div>
+        </div>
+    </td>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-3" role="progressbar" style="width: 75%">
+                7808
+            </div>
+        </div>
+    </td>
+</tr>  <tr>
+    <th scope="row" class="element-infos">
+        Stencil<br />
+        <span class="light">
+            0.16.1</span>
+        <div class="element-infos__stars">
+            4238&nbsp;<ion-icon name="star"></ion-icon>
+        </div>
+        <div>
+            <a href="./demos/pascal-triangle/stencil" target="_blank">Demo</a>
+        </div>
+    </th>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-1" role="progressbar" style="width: 8%">
+                7.2
+            </div>
+        </div>
+    </td>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-2" role="progressbar" style="width: 14%">
+                320
+            </div>
+        </div>
+    </td>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-3" role="progressbar" style="width: 55%">
+                5754
+            </div>
+        </div>
+    </td>
+</tr>  <tr>
+    <th scope="row" class="element-infos">
+        Svelte<br />
+        <span class="light">
+            2.16.0</span>
+        <div class="element-infos__stars">
+            8306&nbsp;<ion-icon name="star"></ion-icon>
+        </div>
+        <div>
+            <a href="./demos/pascal-triangle/svelte" target="_blank">Demo</a>
+        </div>
+    </th>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-1" role="progressbar" style="width: 2%">
+                2.1
+            </div>
+        </div>
+    </td>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-2" role="progressbar" style="width: 13%">
+                306
+            </div>
+        </div>
+    </td>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-3" role="progressbar" style="width: 23%">
+                2464
+            </div>
+        </div>
+    </td>
+</tr> 
+                    </tbody>
+                </table>
+                <br />
+                <h4>Classic frameworks exporting to Web Components</h4>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+    <th scope="col"></th>
+    <th scope="col">Assets size Gzipped<br>(in Ko)</th>
+    <th scope="col">Page load<br>(in ms)</th>
+    <th scope="col">Time to interactive<br>(in ms)</th>
+</tr>
+                    </thead>
+                    <tbody>
+                         <tr>
+    <th scope="row" class="element-infos">
+        Angular Elements<br />
+        <span class="light">
+            7.1.4</span>
+        <div class="element-infos__stars">
+            42492&nbsp;<ion-icon name="star"></ion-icon>
+        </div>
+        <div>
+            <a href="./demos/pascal-triangle/angular-elements" target="_blank">Demo</a>
+        </div>
+    </th>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-1" role="progressbar" style="width: 100%">
+                80.8
+            </div>
+        </div>
+    </td>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-2" role="progressbar" style="width: 25%">
+                573
+            </div>
+        </div>
+    </td>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-3" role="progressbar" style="width: 46%">
+                4792
+            </div>
+        </div>
+    </td>
+</tr>  <tr>
+    <th scope="row" class="element-infos">
+        Vue.js<br />
+        <span class="light">
+            2.5.21</span>
+        <div class="element-infos__stars">
+            118622&nbsp;<ion-icon name="star"></ion-icon>
+        </div>
+        <div>
+            <a href="./demos/pascal-triangle/vue.js" target="_blank">Demo</a>
+        </div>
+    </th>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-1" role="progressbar" style="width: 43%">
+                35.1
+            </div>
+        </div>
+    </td>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-2" role="progressbar" style="width: 67%">
+                1493
+            </div>
+        </div>
+    </td>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-3" role="progressbar" style="width: 66%">
+                6902
+            </div>
+        </div>
+    </td>
+</tr>  <tr>
+    <th scope="row" class="element-infos">
+        Dojo<br />
+        <span class="light">
+            2.0.0</span>
+        <div class="element-infos__stars">
+            80&nbsp;<ion-icon name="star"></ion-icon>
+        </div>
+        <div>
+            <a href="./demos/pascal-triangle/dojo2" target="_blank">Demo</a>
+        </div>
+    </th>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-1" role="progressbar" style="width: 18%">
+                15.2
+            </div>
+        </div>
+    </td>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-2" role="progressbar" style="width: 100%">
+                2217
+            </div>
+        </div>
+    </td>
+    <td class="align-middle">
+        <div class="progress">
+            <div class="progress-bar bg-3" role="progressbar" style="width: 100%">
+                10329
+            </div>
+        </div>
+    </td>
+</tr> 
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <style>
+            body {
+                background: #f5f5f5;
+            }
+
+            .table-light .name {
+                color: #333;
+                font-size: 1.2rem;
+            }
+
+            .progress {
+                background-color: #d1d2d3;
+            }
+
+            .progress-bar {
+                font-weight: bold;
+            }
+
+            table {
+                width: 100%;
+                table-layout: fixed;
+                border-top: none;
+            }
+
+            .table th {
+                border-top: none;
+            }
+
+            .clear-padding-top {
+                padding-top: 0 !important;
+            }
+
+            hr {
+                margin: 40px 0 0 0;
+            }
+
+            .bg-1 {
+                background-color: #f6b93b !important;
+            }
+
+            .bg-2 {
+                background-color: #e55039 !important;
+            }
+
+            .bg-3 {
+                background-color: #b71540 !important;
+            }
+
+            .bg-4 {
+                background-color: #4a69bd !important;
+            }
+
+            .bg-5 {
+                background-color: #b8e994 !important;
+            }
+
+            .bg-6 {
+                background-color: #079992 !important;
+            }
+
+            .light {
+                font-weight: normal;
+            }
+
+            .element-infos {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .element-infos__stars {
+                display: flex;
+                justify-content: center;
+                font-weight: normal;
+            }
+
+            .element-infos__stars ion-icon[name='star'] {
+                color: #ff9800;
+                margin-top: 2px;
+            }
+        </style>
+        <script src="https://unpkg.com/ionicons@4.4.6/dist/ionicons.js"></script>
+        <script
+            async
+            src="https://www.googletagmanager.com/gtag/js?id=UA-131047101-1"
+        ></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+            gtag('js', new Date());
+
+            gtag('config', 'UA-131047101-1');
+        </script>
+    </body>
+</html>
